@@ -22,8 +22,6 @@ class Item(ItemBase):
 class UserBase(BaseModel):
     sub: str
     email: str
-    first_name: str
-    last_name: str
     name: str
 
 
@@ -33,7 +31,17 @@ class UserCreate(UserBase):
 
 class User(UserBase):
     id: int
+    is_active: bool
     items: List[Item] = []
 
     class Config:
         orm_mode = True
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+
+class TokenData(BaseModel):
+    id: Union[str, None] = None
