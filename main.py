@@ -1,9 +1,10 @@
 from fastapi import FastAPI
 
-from routers import login, user, item
-from database import Base
+import SETTING
+SETTING.init()
 
-from database import engine
+from routers import login, user, item
+from database import Base, engine
 
 def include_router(app):
     app.include_router(login.router, prefix='/login')
