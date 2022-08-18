@@ -18,14 +18,14 @@ async def read_users_me(db: Session = Depends(get_db), current_user: User = Depe
     return current_user
 
 
-@router.get("/", name = '모든 사용자 정보', tags=['관리자'],
+@router.get("/", name = '모든 사용자 정보', tags=['개인 정보'],
             description='모든 사용자 정보를 반환', response_model=List[schemas.User])
 def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db), current_user: User = Depends(get_current_active_user)):
     users = get_users(db, skip=skip, limit=limit)
     return users
 
 
-@router.get("/{user_id}", name = '사용자 정보', tags=['관리자'],
+@router.get("/{user_id}", name = '사용자 정보', tags=['개인 정보'],
             description='"id"에 해당하는 사용자 정보 반환', response_model=schemas.User)
 def read_user(user_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_active_user)):
     db_user = get_user(db, user_id=user_id)
