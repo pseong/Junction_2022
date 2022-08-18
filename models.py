@@ -9,7 +9,7 @@ class User(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     sub = Column(String(100), unique=True, index=True, nullable=False)
-    email = Column(String(100), unique=True, index=True)
+    email = Column(String(100), index=True)
     name = Column(String(100), index=True)
     is_active = Column(Boolean, default=True, nullable=False)
 
