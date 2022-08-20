@@ -45,3 +45,7 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     id: Union[str, None] = None
+
+
+class Word(BaseModel):
+    word: str
