@@ -24,7 +24,7 @@ def get_db():
 class Node:
     def __init__(self):
         self.id = "0"
-        self.type = "myNode"
+        self.type = "rootNode"
         self.data = {
             "label": "play",
             "id": 0,
@@ -50,11 +50,20 @@ class Factory:
         node.data["id"] = self.nextIdx
         node.data["parent"] = parent
         node.data["color"] = color
+        node.type = "myNode"
         self.nodes[str(node.id)] = node
         self.nodes[str(parent)].data["childs"].append(self.nextIdx)
-        self.nodes[str(node.id)].position['x'] += self.nodes[str(parent)].position['x'] + 200
+        self.nodes[str(node.id)].position['x'] += self.nodes[str(parent)].position['x'] + 350
         self.nodes[str(node.id)].position['y'] += self.nodes[str(parent)].position['y'] + (len(self.nodes[str(parent)].data['childs']) - 1) * 200
-        self.edges.append({"id": f"e{parent}-{self.nextIdx}", "source": str(parent), "target": str(self.nextIdx)})
+        self.edges.append({
+            "id": f"e{parent}-{self.nextIdx}",
+            "source": str(parent),
+            "target": str(self.nextIdx),
+            "style": {
+                "stroke": "#6D7A79",
+                "stroke-width": 4
+            }
+        })
         self.nextIdx = self.nextIdx + 1
         self.h = 0
 
