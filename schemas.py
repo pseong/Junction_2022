@@ -49,3 +49,21 @@ class TokenData(BaseModel):
 
 class Word(BaseModel):
     word: str
+
+
+class CreateNode(BaseModel):
+    parent: int
+    label: str
+    color: str
+
+
+class UpdateNode(BaseModel):
+    id: int
+    label: Union[str, None]
+    color: Union[str, None]
+    x: Union[int, None]
+    y: Union[int, None]
+
+
+class RemoveNode(BaseModel):
+    id: int
